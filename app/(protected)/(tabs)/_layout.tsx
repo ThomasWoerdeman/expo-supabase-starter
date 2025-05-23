@@ -1,8 +1,9 @@
-import React from "react";
 import { Tabs } from "expo-router";
+import { Home, Settings } from "lucide-react-native";
+import React from "react";
 
-import { useColorScheme } from "@/lib/useColorScheme";
 import { colors } from "@/constants/colors";
+import { useColorScheme } from "@/lib/useColorScheme";
 
 export default function TabsLayout() {
 	const { colorScheme } = useColorScheme();
@@ -24,8 +25,22 @@ export default function TabsLayout() {
 				tabBarShowLabel: false,
 			}}
 		>
-			<Tabs.Screen name="index" options={{ title: "Home" }} />
-			<Tabs.Screen name="settings" options={{ title: "Settings" }} />
+			<Tabs.Screen
+				name="index"
+				options={{
+					title: "Home",
+					tabBarIcon: ({ color, size }) => <Home size={size} color={color} />,
+				}}
+			/>
+			<Tabs.Screen
+				name="settings"
+				options={{
+					title: "Settings",
+					tabBarIcon: ({ color, size }) => (
+						<Settings size={size} color={color} />
+					),
+				}}
+			/>
 		</Tabs>
 	);
 }

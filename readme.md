@@ -17,6 +17,7 @@ This is not supposed to be a template, boilerplate or a framework. It is an opin
 - [🗄️ Project Structure](docs/project-structure.md)
 - [🧱 Components And Styling](docs/components-and-styling.md)
 - [🗃️ State Management](docs/state-management.md)
+- [🗃️ Database Setup](docs/database-setup.md)
 
 ## Contributing
 
@@ -24,4 +25,4 @@ Contributions to this starter project are highly encouraged and welcome! If you 
 
 ## License
 
-This repository is licensed under the MIT License. You are granted the freedom to use, modify, and distribute the code for personal or commercial purposes. For more details, please refer to the [LICENSE](https://github.com/FlemingVincent/supabase-starter/blob/main/LICENSE) file.
+This repository is licensed under the MIT License. You are granted the freedom to use, modify, and distribute the code for personal or commercial purposes. For more details, please refer to the [LICENSE](https://github.com/thomaswoerdeman/supabase-starter/blob/main/LICENSE) file.

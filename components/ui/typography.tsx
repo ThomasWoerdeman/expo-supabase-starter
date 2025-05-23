@@ -1,8 +1,8 @@
+import { cn } from "@/lib/utils";
 import * as Slot from "@rn-primitives/slot";
 import type { SlottableTextProps, TextRef } from "@rn-primitives/types";
 import * as React from "react";
 import { Platform, Text as RNText } from "react-native";
-import { cn } from "@/lib/utils";
 
 const H1 = React.forwardRef<TextRef, SlottableTextProps>(
 	({ className, asChild = false, ...props }, ref) => {
@@ -127,7 +127,7 @@ const Code = React.forwardRef<TextRef, SlottableTextProps>(
 				// @ts-ignore - role of code renders code element on the web
 				role={Platform.OS === "web" ? "code" : undefined}
 				className={cn(
-					"relative rounded-md bg-muted px-[0.3rem] py-[0.2rem] text-sm text-foreground font-semibold web:select-text",
+					"relative  bg-muted px-[0.3rem] py-[0.2rem] text-sm text-foreground font-semibold web:select-text",
 					className,
 				)}
 				ref={ref}

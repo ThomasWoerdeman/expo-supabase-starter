@@ -17,7 +17,7 @@ Note: By default Supabase Auth requires email verification before a session is c
 2. Clone the repository to your local machine:
 
 ```bash
-git clone https://github.com/FlemingVincent/expo-supabase-starter.git
+git clone https://github.com/thomaswoerdeman/expo-supabase-starter.git
 ```
 
 3. Navigate to the project directory:

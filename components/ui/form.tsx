@@ -1,3 +1,9 @@
+import { Input, PrefixInput } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { RadioGroup } from "@/components/ui/radio-group";
+import { Switch } from "@/components/ui/switch";
+import { Textarea } from "@/components/ui/textarea";
+import { cn } from "@/lib/utils";
 import * as React from "react";
 import {
 	Controller,
@@ -10,12 +16,6 @@ import {
 } from "react-hook-form";
 import { View } from "react-native";
 import Animated, { FadeInDown, FadeOut } from "react-native-reanimated";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { RadioGroup } from "@/components/ui/radio-group";
-import { Switch } from "@/components/ui/switch";
-import { Textarea } from "@/components/ui/textarea";
-import { cn } from "@/lib/utils";
 import { Text } from "./text";
 
 const Form = FormProvider;
@@ -232,6 +232,65 @@ const FormInput = React.forwardRef<
 
 FormInput.displayName = "FormInput";
 
+const FormPrefixInput = React.forwardRef<
+	React.ComponentRef<typeof PrefixInput>,
+	FormItemProps<typeof PrefixInput, string> & { prefix?: string }
+>(({ label, description, onChange, prefix, ...props }, ref) => {
+	const inputRef = React.useRef<React.ComponentRef<typeof PrefixInput>>(null);
+	const {
+		error,
+		formItemNativeID,
+		formDescriptionNativeID,
+		formMessageNativeID,
+	} = useFormField();
+
+	React.useImperativeHandle(ref, () => {
+		if (!inputRef.current) {
+			return {} as React.ComponentRef<typeof PrefixInput>;
+		}
+		return inputRef.current;
+	}, [inputRef.current]);
+
+	function handleOnLabelPress() {
+		if (!inputRef.current) {
+			return;
+		}
+		if (inputRef.current.isFocused()) {
+			inputRef.current?.blur();
+		} else {
+			inputRef.current?.focus();
+		}
+	}
+
+	return (
+		<FormItem>
+			{!!label && (
+				<FormLabel nativeID={formItemNativeID} onPress={handleOnLabelPress}>
+					{label}
+				</FormLabel>
+			)}
+
+			<PrefixInput
+				ref={inputRef}
+				aria-labelledby={formItemNativeID}
+				aria-describedby={
+					!error
+						? `${formDescriptionNativeID}`
+						: `${formDescriptionNativeID} ${formMessageNativeID}`
+				}
+				aria-invalid={!!error}
+				onChangeText={onChange}
+				prefix={prefix}
+				{...props}
+			/>
+			{!!description && <FormDescription>{description}</FormDescription>}
+			<FormMessage />
+		</FormItem>
+	);
+});
+
+FormPrefixInput.displayName = "FormPrefixInput";
+
 const FormTextarea = React.forwardRef<
 	React.ComponentRef<typeof Textarea>,
 	FormItemProps<typeof Textarea, string>
@@ -395,6 +454,7 @@ export {
 	FormItem,
 	FormLabel,
 	FormMessage,
+	FormPrefixInput,
 	FormRadioGroup,
 	FormSwitch,
 	FormTextarea,
